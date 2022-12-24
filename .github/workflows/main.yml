@@ -24,8 +24,8 @@ jobs:
         cd ./allure-report
         git init
         git add -A
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "65128522+monthebrice2000@users.noreply.github.com"
+        git config --local user.name "monthebrice2000"
         git commit -m 'deploy'
 
     - name: Force push to destination branch
@@ -34,4 +34,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
         force: true
-        #directory: allure-report/
+        directory: ./allure-report/
