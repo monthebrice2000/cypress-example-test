@@ -27,6 +27,7 @@ jobs:
           git switch gh-page
           git branch
           git push origin gh-page
-          rm !(allure-report)
+          shopt -s extglob
+          rm -rf -- !(allure-report)
           cp ./allure-report/* ./
           ls 
