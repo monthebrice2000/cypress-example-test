@@ -21,13 +21,14 @@ jobs:
 #        run: npm run allure:report
       - name: Init new repo in dist folder and commit generated files
         run: |
+          ls
           git branch
           git branch gh-page
           git switch gh-page
           git branch
           git push origin gh-page
-          mkdir docs
-          mv * docs
+          mkdir docss
+          mv * docss
           cp -r ./allure-report/* ./
-          rm -rf ./docs
+          rm -rf ./docss
           ls 
