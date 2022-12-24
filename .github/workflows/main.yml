@@ -22,9 +22,12 @@ jobs:
       - name: Init new repo in dist folder and commit generated files
         run: |
           git branch
-          cd ./allure-report
           git branch gh-page
           git switch gh-page
           git branch
           git push origin gh-page
+          mkdir docs
+          mv * docs
+          cp -r ./allure-report/* ./
+          rm -rf ./docs
           ls 
