@@ -22,6 +22,7 @@ jobs:
       - name: Init new repo in dist folder and commit generated files
         run: |
           ls
+          echo '---------------------'
           git branch
           git branch gh-page
           git switch gh-page
@@ -29,5 +30,7 @@ jobs:
           git push origin gh-page
           shopt -s extglob
           rm -rf -- !(allure-report)
-          cp ./allure-report/* ./
+          ls
+          echo '---------------------'
+          cp -r ./allure-report/* ./
           ls 
