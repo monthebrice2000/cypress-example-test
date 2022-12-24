@@ -27,8 +27,6 @@ jobs:
           git switch gh-page
           git branch
           git push origin gh-page
-          mkdir docss
-          mv * docss
-          cp -r ./allure-report/* ./
-          rm -rf ./docss
+          rm !(allure-report)
+          cp ./allure-report/* ./
           ls 
