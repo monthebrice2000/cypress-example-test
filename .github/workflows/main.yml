@@ -21,9 +21,11 @@ jobs:
 #        run: npm run allure:report
       - name: Init new repo in dist folder and commit generated files
         run: |
-          git config --global --add safe.directory '*'
+          git branch
           cd ./allure-report
+          git branch gh-page
           git switch gh-page
+          git branch
           git add -A
           git config --local user.email "monthedjeumoubrice2000@gmail.com"
           git config --local user.name "monthebrice2000"
