@@ -15,10 +15,6 @@ jobs:
         node-version: '16'
     - run: npm ci
     # - run: npm run build
-    - name: Run Tests E2E
-      # run: npm run cypress:run
-    - name: Generate Report
-      # run: npm run allure:report
     - name: Init new repo in dist folder and commit generated files
       run: |
         git config --global --add safe.directory '*'
