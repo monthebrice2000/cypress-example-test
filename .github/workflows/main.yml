@@ -23,11 +23,10 @@ jobs:
         run: |
           git config --global --add safe.directory '*'
           cd ./allure-report
-          git init
+          git branch gh-page
           git add -A
           git config --local user.email "monthedjeumoubrice2000@gmail.com"
           git config --local user.name "monthebrice2000"
           git commit -m 'deploy'
-          git branch
-          git push --set-upstream master:gh-page master
+          git push
           ls 
