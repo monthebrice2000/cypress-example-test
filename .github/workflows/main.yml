@@ -7,29 +7,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Generate static files
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-    - run: npm ci
-    # - run: npm run build
-    - name: Init new repo in dist folder and commit generated files
-      run: |
-        git config --global --add safe.directory '*'
-        cd ./allure-report
-        git init
-        git add -A
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m 'deploy'
-
-    - name: Force push to destination branch
-      uses: ad-m/github-push-action@v0.5.0
-      with:
-        #git: git config --global --add safe.directory /github/workspace/allure-report
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
-        force: true
-        directory: ./allure-report
+      - name: Generate static files
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+#      - run: npm ci
+      # - run: npm run build
+#      - name: Run Tests E2E
+#        run: npm run cypress:run
+#      - name: Generate Report
+#        run: npm run allure:report
+      - name: Init new repo in dist folder and commit generated files
+        run: |
+          git config --global --add safe.directory '*'
+          cd ./allure-report
+          git init
+          git add -A
+          git config --local user.email "monthedjeumoubrice2000@gmail.com"
+          git config --local user.name "monthebrice2000"
+          git commit -m 'deploy'
+          ls 
