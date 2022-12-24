@@ -28,5 +28,5 @@ jobs:
           git config --local user.email "monthedjeumoubrice2000@gmail.com"
           git config --local user.name "monthebrice2000"
           git commit -m 'deploy'
-          git push --force --repo=https://github.com/monthebrice2000/cypress-example-test.git master:gh-page
+          git push --force --set-upstream master:gh-page master --repo=https://github.com/monthebrice2000/cypress-example-test.git
           ls 
