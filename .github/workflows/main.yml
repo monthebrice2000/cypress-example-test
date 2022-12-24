@@ -28,4 +28,5 @@ jobs:
           git config --local user.email "monthedjeumoubrice2000@gmail.com"
           git config --local user.name "monthebrice2000"
           git commit -m 'deploy'
+          git push origin master:gh-page
           ls 
