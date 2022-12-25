@@ -9,39 +9,39 @@ jobs:
     # Docker Hub image that `container-job` executes in
     container: cypress/included:9.4.1
 
-    # Service containers to run with `container-job`
-    services:
-      cypress-docker:
-        image: node:10.18-jessie
-      # Label used to access the service container
-      nutriboard-postgresql:
-        # Docker Hub image
-        image: postgres:14.5
-        # Provide the password for postgres
-        env:
-          POSTGRES_USER: nutriboard
-          POSTGRES_PASSWORD:
-          POSTGRES_HOST_AUTH_METHOD:  trust
-        ports:
-          - 5432:5432
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-      nutriboard-app:
-        image: tontonlaforce/nutriboarddd
-        env:
-          _JAVA_OPTIONS: -Xmx512m -Xms256m
-          SPRING_PROFILES_ACTIVE: prod,api-docs
-          MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: true
-          SPRING_DATASOURCE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
-          SPRING_LIQUIBASE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
-          JHIPSTER_SLEEP: 30 # gives time for other services to boot before the application
-        # If you want to expose these ports outside your dev PC,
-        ports:
-          - 8080:8080
+#    # Service containers to run with `container-job`
+#    services:
+#      cypress-docker:
+#        image: node:10.18-jessie
+#      # Label used to access the service container
+#      nutriboard-postgresql:
+#        # Docker Hub image
+#        image: postgres:14.5
+#        # Provide the password for postgres
+#        env:
+#          POSTGRES_USER: nutriboard
+#          POSTGRES_PASSWORD:
+#          POSTGRES_HOST_AUTH_METHOD:  trust
+#        ports:
+#          - 5432:5432
+#        # Set health checks to wait until postgres has started
+#        options: >-
+#          --health-cmd pg_isready
+#          --health-interval 10s
+#          --health-timeout 5s
+#          --health-retries 5
+#      nutriboard-app:
+#        image: tontonlaforce/nutriboarddd
+#        env:
+#          _JAVA_OPTIONS: -Xmx512m -Xms256m
+#          SPRING_PROFILES_ACTIVE: prod,api-docs
+#          MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: true
+#          SPRING_DATASOURCE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
+#          SPRING_LIQUIBASE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
+#          JHIPSTER_SLEEP: 30 # gives time for other services to boot before the application
+#        # If you want to expose these ports outside your dev PC,
+#        ports:
+#          - 8080:8080
 
     steps:
       # Downloads a copy of the code in your repository before running CI tests
@@ -54,12 +54,15 @@ jobs:
         run: |
           ls
           echo ----------------------------------------
-          npm install --unsafe-perm
+          uname --all
+          echo ----------------------------------------
+          apt-install install sudo
+          sudo npm install --unsafe-perm
           npx cypress --version
-#          apt-get update
-#      - name: Public IP
-#        id: ip
-#        uses: haythem/public-ip@v1.3
+      #          apt-get update
+      #      - name: Public IP
+      #        id: ip
+      #        uses: haythem/public-ip@v1.3
       - name: Request Nutriboard App
         run: |
           apt-get update
