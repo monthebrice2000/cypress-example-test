@@ -30,7 +30,7 @@ jobs:
           --health-retries 5
       nutriboard-app:
         image: tontonlaforce/nutriboarddd
-        env: 
+        env:
           _JAVA_OPTIONS: -Xmx512m -Xms256m
           SPRING_PROFILES_ACTIVE: prod,api-docs
           MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: true
@@ -48,28 +48,20 @@ jobs:
 
       # Performs a clean installation of all dependencies in the `package.json` file
       # For more information, see https://docs.npmjs.com/cli/ci.html
-      - name: Install dependencies
-        run: npm ci
-      - name: Public IP
-        id: ip
-        uses: haythem/public-ip@v1.3
-      - name: Docker version
+#      - name: Install dependencies
+#        run: npm ci
+#      - name: Public IP
+#        id: ip
+#        uses: haythem/public-ip@v1.3
+      - name: Request Nutriboard App
         run: |
-          ls /usr/bin/
           apt-get update
           apt-get install curl -y
           #curl nutriboard-app:8080
           #curl http://172.18.0.4:8080/
-          echo ${{ steps.ip.outputs.ipv4 }}
-          curl http://${{ steps.ip.outputs.ipv6 }}:8080/
-
-#      - name: Connect to PostgreSQL
-#        # Runs a script that creates a PostgreSQL table, populates
-#        # the table with data, and then retrieves the data.
-#        run: node client.js
-#        # Environment variables used by the `client.js` script to create a new PostgreSQL table.
-#        env:
-#          # The hostname used to communicate with the PostgreSQL service container
-#          POSTGRES_HOST: postgres
-#          # The default PostgreSQL port
-#          POSTGRES_PORT: 5432
+          curl nutriboard-app:8080/
+      - run: npm ci
+      - name: Run Tests E2E
+        run: npm run cypress:run --e2e --env CYPRESS_BASE_URL=nutriboard-app:8080/
+      - name: Generate Report
+        run: npm run allure:report
