@@ -32,7 +32,7 @@ jobs:
           TEST=$(git rev-parse --verify --quiet gh-page && echo true || echo false)
           echo "BRANCH_IS_EXISTING=${TEST}" >> $GITHUB_ENV
           echo ----------------- ${{env.BRANCH_IS_EXISTING}} ------------------------
-          echo ----------------- ${BRANCH_IS_EXISTING} ------------------------
+          echo ----------------- ${TEST} ${BRANCH_IS_EXISTING} ------------------------
       - name: Delete branch gh-page if exists
         if: env.BRANCH_IS_EXISTING
-        run: echo ----------------- ${{env.BRANCH_IS_EXISTING}} ------------------------
+        run: echo -----------------${TEST} ${{env.BRANCH_IS_EXISTING}} ------------------------
