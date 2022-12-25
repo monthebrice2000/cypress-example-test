@@ -11,6 +11,8 @@ jobs:
 
     # Service containers to run with `container-job`
     services:
+      cypress-docker:
+        image: cypress/included:8.0.0
       # Label used to access the service container
       nutriboard-postgresql:
         # Docker Hub image
