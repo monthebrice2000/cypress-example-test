@@ -65,6 +65,6 @@ jobs:
       - name: Run Tests E2E
         env:
           CYPRESS_BASE_URL: nutriboard-app:8080/
-        run: cypress run --env allure=true -b chrome
+        run: npx cypress run --env allure=true -b chrome
       - name: Generate Report
         run: npm run allure:report
