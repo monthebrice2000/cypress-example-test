@@ -51,10 +51,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-#      - name: Docker version
-#        run: |
-#          ls /usr/bin/
-#          curl http://localhost:8080
+      - name: Docker version
+        run: |
+          ls /usr/bin/
+          curl nutriboard-app:8080
 
 #      - name: Connect to PostgreSQL
 #        # Runs a script that creates a PostgreSQL table, populates
