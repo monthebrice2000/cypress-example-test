@@ -52,10 +52,9 @@ jobs:
         run: npm ci
 
       - name: Docker version
-        run: /usr/bin/docker version
-
-      - name: See docker service running
-        run: /usr/bin/docker container ls -a
+        run: |
+          ls /usr/bin/
+          curl http://localhost:8080
 
 #      - name: Connect to PostgreSQL
 #        # Runs a script that creates a PostgreSQL table, populates
