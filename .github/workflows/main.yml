@@ -29,7 +29,7 @@ jobs:
       #        run: npm run allure:report
       - name: Get if branch exist
         run: |
-          TEST=$(git rev-parse --verify --quiet gh-page && echo true || echo false)
+          TEST=$(git fetch origin gh-page && echo true || echo false)
           echo "BRANCH_IS_EXISTING=${TEST}" >> $GITHUB_ENV
           echo ----------------- ${{env.BRANCH_IS_EXISTING}} ------------------------
           echo ----------------- ${TEST} ${BRANCH_IS_EXISTING} ------------------------
