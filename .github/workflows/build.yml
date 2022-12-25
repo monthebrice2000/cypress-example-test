@@ -57,8 +57,8 @@ jobs:
           uname --all
           echo ----------------------------------------
           apt-get install sudo
-          sudo npm install --unsafe-perm
-          npx cypress --version
+          sudo npm --version
+          sudo npx cypress --version
       #          apt-get update
       #      - name: Public IP
       #        id: ip
