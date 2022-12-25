@@ -56,7 +56,7 @@ jobs:
           echo ----------------------------------------
           uname --all
           echo ----------------------------------------
-          apt-install install sudo
+          apt-get install sudo
           sudo npm install --unsafe-perm
           npx cypress --version
       #          apt-get update
