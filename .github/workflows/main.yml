@@ -2,25 +2,34 @@ name: Deploy to GitHub pages
 on:
   push:
     branches: [ "master" ]
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Generate static files 
+      - name: Generate static files
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-#      - run: npm ci
+      #      - run: npm ci
       # - run: npm run build
-#      - name: Run Tests E2E
-#        run: npm run cypress:run
-#      - name: Generate Report
-#        run: npm run allure:report
+      #      - name: Run Tests E2E
+      #        run: npm run cypress:run
+      #      - name: Generate Report
+      #        run: npm run allure:report
       - name: Init new repo in dist folder and commit generated files
         run: |
+          git push origin --delete gh-page
           ls
           echo '---------------------'
           git branch
@@ -32,10 +41,22 @@ jobs:
           ls
           echo '---------------------'
           cp -r ./allure-report/* ./
-          ls 
+          ls
           rm -rf ./allure-report
           git config --local user.email "monthedjeumoubrice2000@gmail.com"
           git config --local user.name "monthebrice2000"
           git add -A
           git commit -m 'deploy'
           git push origin gh-page
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
