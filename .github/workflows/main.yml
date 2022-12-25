@@ -27,13 +27,21 @@ jobs:
       #        run: npm run cypress:run
       #      - name: Generate Report
       #        run: npm run allure:report
+      - name: Get if branch exist
+        run: |
+          TEST=$(git rev-parse --verify --quiet gh-page && echo true || echo false)
+          echo "BRANCH_IS_EXISTING=${TEST}" >> $GITHUB_ENV
+      - name: Delete branch gh-page if exists
+        if: ${{ env.BRANCH_IS_EXISTING == 'true' }}
+        run: |
+          echo '------------delete gh-page branch--------------'
+          git push origin --delete gh-page
       - name: Init new repo in dist folder and commit generated files
         run: |
-          git config --local user.email "monthedjeumoubrice2000@gmail.com"
-          git config --local user.name "monthebrice2000"
-          git push origin --delete gh-page
           ls
           echo '---------------------'
+          git config --local user.email "monthedjeumoubrice2000@gmail.com"
+          git config --local user.name "monthebrice2000"
           git branch
           git branch gh-page
           git switch gh-page
