@@ -54,7 +54,7 @@ jobs:
         run: |
           ls
           echo ----------------------------------------
-          npm install
+          npm install --unsafe-perm
           npx cypress --version
 #          apt-get update
 #      - name: Public IP
