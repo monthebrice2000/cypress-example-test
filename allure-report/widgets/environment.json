@@ -1,1 +1,1 @@
-[{"values":["chrome"],"name":"browser"},{"values":["staging"],"name":"environment"},{"values":["https://gitlab.com/"],"name":"application_url"},{"values":["test@gitlab.com"],"name":"tested_username"},{"values":["password1234"],"name":"tested_password"}]
+[{"values":["Chrome"],"name":"Browser"},{"values":["63.0"],"name":"Browser.Version"},{"values":["Production"],"name":"Stand"}]
