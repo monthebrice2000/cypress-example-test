@@ -54,7 +54,8 @@ jobs:
         run: |
           ls
           echo ----------------------------------------
-          npm ci
+          npm install
+          npx cypress --version
 #          apt-get update
 #      - name: Public IP
 #        id: ip
