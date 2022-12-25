@@ -7,12 +7,12 @@ jobs:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: node:10.18-jessie
+    container: cypress/included:9.4.1
 
     # Service containers to run with `container-job`
     services:
       cypress-docker:
-        image: cypress/included:8.0.0
+        image: node:10.18-jessie
       # Label used to access the service container
       nutriboard-postgresql:
         # Docker Hub image
@@ -50,12 +50,12 @@ jobs:
 
       # Performs a clean installation of all dependencies in the `package.json` file
       # For more information, see https://docs.npmjs.com/cli/ci.html
-      - name: Install dependencies
-        run: |
-          ls
-          echo ----------------------------------------
-          npm ci
-          apt-get update
+#      - name: Install dependencies
+#        run: |
+#          ls
+#          echo ----------------------------------------
+#          npm ci
+#          apt-get update
 #      - name: Public IP
 #        id: ip
 #        uses: haythem/public-ip@v1.3
