@@ -52,6 +52,7 @@ jobs:
         run: |
           ls
           echo ----------------------------------------
+          apt-get install sudo
           sudo apt-get update
           sudo apt-get install xvfb
           npm ci
