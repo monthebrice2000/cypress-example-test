@@ -16,13 +16,13 @@ module.exports = defineConfig({
     async setupNodeEvents(on, config) {
       // implement node event listeners here
 
-      /*const bundler = createBundler({
+      const bundler = createBundler({
         plugins: [createEsBuildPlugin(config)],
       });
       on("file:preprocessor", bundler);
       await addCucumberPreprocessorPlugin(on, config);
 
-      require('cypress-mochawesome-reporter/plugin')(on);
+      /*require('cypress-mochawesome-reporter/plugin')(on);
       on('before:run', async (details) => {
         console.log('override before:run');
         await beforeRunHook(details);
