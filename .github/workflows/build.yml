@@ -3,20 +3,19 @@ on: push
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read|write
-  pages: read|write
-  id-token: read|write
+  id-token: write
 # Allow one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
-environment:
-  name: github-pages
-  url: ${{ steps.deployment.outputs.page_url }}
+
 
 jobs:
   # Label of the container job
   container-job:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
