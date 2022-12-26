@@ -71,7 +71,7 @@ jobs:
           sleep 30
           apt-get update
           apt-get install curl -y
-          curl http://172.18.0.4:8080/
+          # curl http://172.18.0.4:8080/
           curl nutriboard-app:8080
           #curl https://google.com
       - name: Run Tests E2E
