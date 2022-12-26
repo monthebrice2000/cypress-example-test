@@ -70,7 +70,8 @@ jobs:
         run: |
           apt-get update
           apt-get install curl -y
-          curl ${{ job.services.nutriboard-app.ports['8080'] }}
+          curl http://172.18.0.4:8080/
+          curl ${{ job.services.nutriboard-app }}:8080
           #curl https://google.com
 #      - name: Run Tests E2E
 #        #        env:
