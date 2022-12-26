@@ -79,8 +79,6 @@ jobs:
           sudo apt install -y openjdk-11-jdk
           echo ---------------- ${JAVA_HOME} --------------------
           java --version
-          java -v
-          java -version
           echo ---------------- ${JAVA_HOME} --------------------
           npm install cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild
           npx cypress run --env allure=true -b chrome -C ./cypress.config.ts
