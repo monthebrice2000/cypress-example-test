@@ -1,5 +1,7 @@
 name: Nutriboard Service app
-on: push
+on:
+  push:
+    branches: [ "deploy" ]
 
 jobs:
   # Label of the container job
