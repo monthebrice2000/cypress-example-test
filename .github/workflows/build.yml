@@ -33,7 +33,10 @@ jobs:
           #sudo npm ci
       - name: Init new repo in dist folder and commit generated files
         run: |
-          sudo lsb_release -a
+          sudo add-apt-repository main
+          sudo add-apt-repository universe
+          sudo add-apt-repository restricted
+          sudo add-apt-repository multiverse 
           sudo apt-get install shopt -y
           sudo shopt -s extglob
           apt-get update
