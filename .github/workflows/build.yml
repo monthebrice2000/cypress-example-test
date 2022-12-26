@@ -118,7 +118,10 @@ jobs:
           git branch gh-page
           git switch gh-page
           git branch
+          apt-get update 
+          apt-get install shopt -y
           shopt -s extglob
+          apt-get update
           rm -rf -- !(allure-report)
           ls
           echo '---------------------'
