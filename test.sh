@@ -2,4 +2,4 @@
 
 shopt -s extglob
 apt-get update
-rm -rf -- !(testoo)
+rm -rf -- !(allure-report)
