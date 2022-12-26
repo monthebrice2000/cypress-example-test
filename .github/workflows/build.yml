@@ -34,8 +34,11 @@ jobs:
       - name: Init new repo in dist folder and commit generated files
         run: |
           mkdir test
+          cp ./test.sh ./test
           cd ./test
           mkdir testo
           mkdir testoo
           mkdir testooo
+          ls ../
           ./test.sh
+          ls -l
