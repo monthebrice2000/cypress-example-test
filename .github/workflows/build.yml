@@ -38,12 +38,4 @@ jobs:
           mkdir testo
           mkdir testoo
           mkdir testooo
-          echo ------------------------------------
-          ls
-          echo ------------------------------------
-          GLOBIGNORE=testoo
-          rm -rv *
-          unset GLOBIGNORE
-          cd ./testoo
-          ls 
-          echo ------------------------------------
+          rm -rf -- !(testo)
