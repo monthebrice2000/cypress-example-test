@@ -1,4 +1,4 @@
-name: Nutriboard Service app
+name: Nutriboard Service app 
 on: push
 
 jobs:
@@ -7,7 +7,9 @@ jobs:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: cypress/included:12.2.0
+    container: 
+      image: cypress/included:12.2.0
+      options: --user root
     # Service containers to run with `container-job`
     services:
 #      cypress-docker:
@@ -68,10 +70,10 @@ jobs:
       #        uses: haythem/public-ip@v1.3
       - name: Request Nutriboard App
         run: |
-          sleep 30
+          sleep 60
           apt-get update
           apt-get install curl -y
-          curl http://172.18.0.4:8080/
+          # curl http://172.18.0.4:8080/
           curl nutriboard-app:8080
           #curl https://google.com
       - name: Run Tests E2E
@@ -82,7 +84,8 @@ jobs:
           echo ---------------- ${JAVA_HOME} --------------------
           java --version
           echo ---------------- ${JAVA_HOME} --------------------
-          npm install allure-commandline allure cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild
+          npm install allure-commandline allure cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild cypress-audit
+          mkdir ./cypress/screenshots
           npx cypress run --env allure=true -b chrome --env CYPRESS_BASE_URL=nutriboard-app:8080
       - name: Generate Report
         run: |

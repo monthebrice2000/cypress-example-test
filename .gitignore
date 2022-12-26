@@ -7,7 +7,7 @@
 
 cypress/results/*
 cypress/reports/*
-cypress/screenshots/*
+#cypress/screenshots/*
 cypress/videos/*
 
 ### Node ###
