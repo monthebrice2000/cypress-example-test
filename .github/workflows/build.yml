@@ -61,6 +61,7 @@ jobs:
           echo ----------------------------------------
           sudo npx cypress --version
           echo ----------------------------------------
+          sudo npm ci
       #          apt-get update
       #      - name: Public IP
       #        id: ip
@@ -69,7 +70,7 @@ jobs:
         run: |
           apt-get update
           apt-get install curl -y
-          curl nutriboard-app:8080
+          curl job.services.nutriboard-app:8080
           #curl https://google.com
 #      - name: Run Tests E2E
 #        #        env:
