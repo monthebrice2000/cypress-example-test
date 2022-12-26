@@ -9,7 +9,7 @@ jobs:
     # Docker Hub image that `container-job` executes in
     container: 
       image: cypress/included:12.2.0
-      options: --user 1001
+      options: --user root
     # Service containers to run with `container-job`
     services:
 #      cypress-docker:
