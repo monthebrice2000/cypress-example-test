@@ -85,4 +85,5 @@ jobs:
       - name: Generate Report
         run: |
           sudo chmod o+w allure-results/
-          sudo npm run allure:report
+          ls -l allure-results/
+          sudo npx allure generate allure-results -o allure-report --clean
