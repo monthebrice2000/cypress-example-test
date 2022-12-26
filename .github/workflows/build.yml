@@ -74,7 +74,7 @@ jobs:
           apt-get update
           apt-get install curl -y
           # curl http://172.18.0.4:8080/
-          curl nutriboard-app:8080
+          curl http://nutriboard-app:8080
           #curl https://google.com
       - name: Run Tests E2E
         #        env:
@@ -86,7 +86,7 @@ jobs:
           echo ---------------- ${JAVA_HOME} --------------------
           npm install @cypress/code-coverage allure-commandline allure cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild cypress-audit
           # mkdir ./cypress/screenshots
-          npx cypress run --config baseUrl=nutriboard-app:8080 --env allure=true  -b chrome
+          npx cypress run --config baseUrl=http://nutriboard-app:8080 --env allure=true  -b chrome
       - name: Generate Report
         run: |
           rm -fr ./allure-report
