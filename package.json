@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open --config baseUrl=http://localhost:8080/",
     "cypress:run:key": "tsc && cypress run --record --key 11db3f03-e0c4-4f5d-9d79-dc669e196edc",
-    "cypress:run": "cypress run --config baseUrl=http://localhost:8080/ --env allure=true  -b chrome ",
+    "cypress:run": "cypress run --config baseUrl=http://nutriboard-app:8080 --env allure=true  -b chrome || npm run allure:report",
     "allure:report": "allure generate allure-results -o allure-report --clean",
     "allure:open": "allure open"
   },
