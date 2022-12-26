@@ -53,6 +53,7 @@ import { defineConfig } from 'cypress';
 const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 export const defaultConfig = {
+  projectId: 'qz7uss',
   video: false,
   fixturesFolder: 'src/test/javascript/cypress/fixtures',
   screenshotsFolder: 'target/cypress/screenshots',
