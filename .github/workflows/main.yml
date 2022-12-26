@@ -1,4 +1,3 @@
-
 name: Deploy to GitHub pages
 on:
   push:
@@ -29,7 +28,7 @@ jobs:
           echo ----------------- ${{env.BRANCH_IS_EXISTING}} ------------------------
           echo ----------------- ${TEST} ${BRANCH_IS_EXISTING} ------------------------
       - name: Delete branch gh-page if exists
-        if: env.BRANCH_IS_EXISTING
+        if: env.BRANCH_IS_EXISTING == 'true'
         run: |
           echo '------------delete gh-page branch ${{env.BRANCH_IS_EXISTING}} --------------'
           git push origin --delete gh-page
@@ -83,3 +82,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+
