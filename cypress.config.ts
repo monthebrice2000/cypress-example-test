@@ -7,15 +7,7 @@ const createEsBuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esb
 
 module.exports = defineConfig({
   projectId: 'qz7uss',
-  reporter: 'cypress-mochawesome-reporter',
   video: false,
-  reporterOptions: {
-    charts: true,
-    reportDir: "cypress/reports",
-    reportPageTitle: 'Cypress Inline Reporter',
-    embeddedScreenshots: true,
-    inlineAssets: true, //Adds the asserts inline
-  },
   env: {
     wpUser: 'root',
     wpPassword: 'root',
@@ -24,7 +16,7 @@ module.exports = defineConfig({
     async setupNodeEvents(on, config) {
       // implement node event listeners here
 
-      const bundler = createBundler({
+      /*const bundler = createBundler({
         plugins: [createEsBuildPlugin(config)],
       });
       on("file:preprocessor", bundler);
@@ -34,14 +26,14 @@ module.exports = defineConfig({
       on('before:run', async (details) => {
         console.log('override before:run');
         await beforeRunHook(details);
-      });
+      });*/
 
       allureWriter(on, config);
 
-      on('after:run', async () => {
+      /*on('after:run', async () => {
         console.log('override after:run');
         await afterRunHook();
-      });
+      });*/
 
       return config;
 
