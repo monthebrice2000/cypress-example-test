@@ -8,40 +8,39 @@ jobs:
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
     container: cypress/included:12.2.0
-
-#    # Service containers to run with `container-job`
-#    services:
+    # Service containers to run with `container-job`
+    services:
 #      cypress-docker:
 #        image: node:10.18-jessie
-#      # Label used to access the service container
-#      nutriboard-postgresql:
-#        # Docker Hub image
-#        image: postgres:14.5
-#        # Provide the password for postgres
-#        env:
-#          POSTGRES_USER: nutriboard
-#          POSTGRES_PASSWORD:
-#          POSTGRES_HOST_AUTH_METHOD:  trust
-#        ports:
-#          - 5432:5432
-#        # Set health checks to wait until postgres has started
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
-#      nutriboard-app:
-#        image: tontonlaforce/nutriboarddd
-#        env:
-#          _JAVA_OPTIONS: -Xmx512m -Xms256m
-#          SPRING_PROFILES_ACTIVE: prod,api-docs
-#          MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: true
-#          SPRING_DATASOURCE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
-#          SPRING_LIQUIBASE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
-#          JHIPSTER_SLEEP: 30 # gives time for other services to boot before the application
-#        # If you want to expose these ports outside your dev PC,
-#        ports:
-#          - 8080:8080
+      # Label used to access the service container
+      nutriboard-postgresql:
+        # Docker Hub image
+        image: postgres:14.5
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: nutriboard
+          POSTGRES_PASSWORD:
+          POSTGRES_HOST_AUTH_METHOD:  trust
+        ports:
+          - 5432:5432
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      nutriboard-app:
+        image: tontonlaforce/nutriboarddd
+        env:
+          _JAVA_OPTIONS: -Xmx512m -Xms256m
+          SPRING_PROFILES_ACTIVE: prod,api-docs
+          MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: true
+          SPRING_DATASOURCE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
+          SPRING_LIQUIBASE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
+          JHIPSTER_SLEEP: 30 # gives time for other services to boot before the application
+        # If you want to expose these ports outside your dev PC,
+        ports:
+          - 8080:8080
 
     steps:
       # Downloads a copy of the code in your repository before running CI tests
@@ -70,23 +69,23 @@ jobs:
         run: |
           apt-get update
           apt-get install curl -y
-          #curl nutriboard-app:8080
-          curl https://google.com
-      - name: Run Tests E2E
-#        env:
-#          CYPRESS_BASE_URL: nutriboard-app:8080/
-        run: |
-          sudo apt install -y openjdk-11-jdk
-          echo ---------------- ${JAVA_HOME} --------------------
-          java --version
-          echo ---------------- ${JAVA_HOME} --------------------
-          npm install allure-commandline allure cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild
-          npx cypress run --env allure=true -b chrome -C ./cypress.config.ts
-      - name: Generate Report
-        run: |
-          rm -fr ./allure-report
-          echo ----------------------------------------
-          ls ./
-          echo ----------------------------------------
-          ls -l allure-results/
-          sudo npx allure generate ./allure-results -o ./allure-report --clean
+          curl nutriboard-app:8080
+          #curl https://google.com
+#      - name: Run Tests E2E
+#        #        env:
+#        #          CYPRESS_BASE_URL: nutriboard-app:8080/
+#        run: |
+#          sudo apt install -y openjdk-11-jdk
+#          echo ---------------- ${JAVA_HOME} --------------------
+#          java --version
+#          echo ---------------- ${JAVA_HOME} --------------------
+#          npm install allure-commandline allure cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild
+#          npx cypress run --env allure=true -b chrome -C ./cypress.config.ts
+#      - name: Generate Report
+#        run: |
+#          rm -fr ./allure-report
+#          echo ----------------------------------------
+#          ls ./
+#          echo ----------------------------------------
+#          ls -l allure-results/
+#          sudo npx allure generate ./allure-results -o ./allure-report --clean
