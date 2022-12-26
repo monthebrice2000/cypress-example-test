@@ -61,17 +61,18 @@ jobs:
           echo ----------------------------------------
           sudo npx cypress --version
           echo ----------------------------------------
-          sudo npm ci
+          #sudo npm ci
       #          apt-get update
       #      - name: Public IP
       #        id: ip
       #        uses: haythem/public-ip@v1.3
       - name: Request Nutriboard App
         run: |
+          sleep 30
           apt-get update
           apt-get install curl -y
           curl http://172.18.0.4:8080/
-          curl ${{ job.services.nutriboard-app }}:8080
+          curl nutriboard-app:8080
           #curl https://google.com
 #      - name: Run Tests E2E
 #        #        env:
