@@ -87,7 +87,8 @@ jobs:
           npm install @cypress/code-coverage allure-commandline allure cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild cypress-audit
           # mkdir ./cypress/screenshots
           rm -rf ./allure-results
-          npx cypress run --config baseUrl=http://nutriboard-app:8080 --env allure=true  -b chrome --record --key 11db3f03-e0c4-4f5d-9d79-dc669e196edc
+          rm -fr ./allure-report
+          npm run cypress:run
       - name: Generate Report
         run: |
           rm -fr ./allure-report
