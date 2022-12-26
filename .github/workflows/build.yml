@@ -33,7 +33,7 @@ jobs:
           #sudo npm ci
       - name: Init new repo in dist folder and commit generated files
         run: |
-          sudo apt update && sudo apt upgrade -y
+          sudo lsb_release -a
           sudo apt-get install shopt -y
           sudo shopt -s extglob
           apt-get update
