@@ -35,5 +35,5 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install shopt -y
-          shopt -s extglob
+          sudo shopt -s extglob
           apt-get update
