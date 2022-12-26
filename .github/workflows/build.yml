@@ -1,5 +1,6 @@
 name: Nutriboard Service app
-on: 
+
+on:
   push:
     branches: [ "deploy" ]
 
