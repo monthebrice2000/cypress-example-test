@@ -42,6 +42,8 @@ jobs:
           ls
           echo ------------------------------------
           GLOBIGNORE=testoo
-          rm -rv * || unset GLOBIGNORE || ls
+          rm -rv *
+          unset GLOBIGNORE
+          cd ./testoo
           ls 
           echo ------------------------------------
