@@ -70,7 +70,7 @@ jobs:
       #        uses: haythem/public-ip@v1.3
       - name: Request Nutriboard App
         run: |
-          sleep 30
+          sleep 60
           apt-get update
           apt-get install curl -y
           # curl http://172.18.0.4:8080/
