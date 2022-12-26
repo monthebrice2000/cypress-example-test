@@ -10,8 +10,8 @@ jobs:
     container: cypress/included:12.2.0
     # Service containers to run with `container-job`
     services:
-      #      cypress-docker:
-      #        image: node:10.18-jessie
+#      cypress-docker:
+#        image: node:10.18-jessie
       # Label used to access the service container
       nutriboard-postgresql:
         # Docker Hub image
@@ -83,7 +83,6 @@ jobs:
           java --version
           echo ---------------- ${JAVA_HOME} --------------------
           npm install allure-commandline allure cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild
-          rm -fr ./allure-results
           npx cypress run --env allure=true -b chrome --env CYPRESS_BASE_URL=nutriboard-app:8080
       - name: Generate Report
         run: |
