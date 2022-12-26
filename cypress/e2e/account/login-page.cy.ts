@@ -11,7 +11,7 @@ describe('login modal', () => {
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
 
   beforeEach(() => {
-    cy.visit('');
+    cy.visit( '' );
     cy.clickOnLoginItem();
   });
 
