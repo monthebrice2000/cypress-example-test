@@ -38,4 +38,4 @@ jobs:
           mkdir testo
           mkdir testoo
           mkdir testooo
-          rm -rf -- !(testo)
+          ./test.sh
