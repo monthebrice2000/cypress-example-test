@@ -35,16 +35,19 @@ jobs:
         run: |
           mkdir test
           cd ./test
-          mkdir testo && mkdir testoo && mkdir testooo
+          mkdir testo
+          mkdir testoo
+          mkdir testooo
           echo ------------------------------------
           ls
           echo ------------------------------------
           GLOBIGNORE=testoo
-          rm -rv *
-          echo ------------------------------------
+          echo ---------------- ${GLOBIGNORE}--------------------
+          rm -rv * && unset GLOBIGNORE
+          echo ---------------- ${GLOBIGNORE}--------------------
           ls
           echo ------------------------------------
           unset GLOBIGNORE
-          echo ------------------------------------
+          echo --------------- ${GLOBIGNORE} ---------------------
           ls 
           echo ------------------------------------
