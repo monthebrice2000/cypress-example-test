@@ -1,4 +1,4 @@
-name: Nutriboard Service app
+name: Nutriboard Service app 
 on: push
 
 jobs:
