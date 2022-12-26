@@ -7,10 +7,11 @@ jobs:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: node:10.18-jessie
-
+    container: cypress/included:12.2.0
     # Service containers to run with `container-job`
     services:
+      #      cypress-docker:
+      #        image: node:10.18-jessie
       # Label used to access the service container
       nutriboard-postgresql:
         # Docker Hub image
@@ -30,13 +31,13 @@ jobs:
           --health-retries 5
       nutriboard-app:
         image: tontonlaforce/nutriboarddd
-        environment:
-          - _JAVA_OPTIONS=-Xmx512m -Xms256m
-          - SPRING_PROFILES_ACTIVE=prod,api-docs
-          - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
-          - SPRING_DATASOURCE_URL=jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
-          - SPRING_LIQUIBASE_URL=jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
-          - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+        env:
+          _JAVA_OPTIONS: -Xmx512m -Xms256m
+          SPRING_PROFILES_ACTIVE: prod,api-docs
+          MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: true
+          SPRING_DATASOURCE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
+          SPRING_LIQUIBASE_URL: jdbc:postgresql://nutriboard-postgresql:5432/nutriboard
+          JHIPSTER_SLEEP: 30 # gives time for other services to boot before the application
         # If you want to expose these ports outside your dev PC,
         ports:
           - 8080:8080
@@ -49,21 +50,46 @@ jobs:
       # Performs a clean installation of all dependencies in the `package.json` file
       # For more information, see https://docs.npmjs.com/cli/ci.html
       - name: Install dependencies
-        run: npm ci
-
-      - name: Docker version
-        run: sudo docker version
-
-      - name: See docker service running
-        run: sudo docker container ls -a
-
-#      - name: Connect to PostgreSQL
-#        # Runs a script that creates a PostgreSQL table, populates
-#        # the table with data, and then retrieves the data.
-#        run: node client.js
-#        # Environment variables used by the `client.js` script to create a new PostgreSQL table.
-#        env:
-#          # The hostname used to communicate with the PostgreSQL service container
-#          POSTGRES_HOST: postgres
-#          # The default PostgreSQL port
-#          POSTGRES_PORT: 5432
+        run: |
+          ls
+          echo ----------------------------------------
+          uname --all
+          echo ----------------------------------------
+          apt-get install sudo
+          echo ----------------------------------------
+          sudo npm --version
+          echo ----------------------------------------
+          sudo npx cypress --version
+          echo ----------------------------------------
+          #sudo npm ci
+      #          apt-get update
+      #      - name: Public IP
+      #        id: ip
+      #        uses: haythem/public-ip@v1.3
+      - name: Request Nutriboard App
+        run: |
+          sleep 30
+          apt-get update
+          apt-get install curl -y
+          curl http://172.18.0.4:8080/
+          curl nutriboard-app:8080
+          #curl https://google.com
+      - name: Run Tests E2E
+        #        env:
+        #          CYPRESS_BASE_URL: nutriboard-app:8080/
+        run: |
+          sudo apt install -y openjdk-11-jdk
+          echo ---------------- ${JAVA_HOME} --------------------
+          java --version
+          echo ---------------- ${JAVA_HOME} --------------------
+          npm install allure-commandline allure cypress-mochawesome-reporter @shelex/cypress-allure-plugin @bahmutov/cypress-esbuild-preprocessor @badeball/cypress-cucumber-preprocessor esbuild
+          rm -fr ./allure-results
+          npx cypress run --env allure=true -b chrome --env CYPRESS_BASE_URL=nutriboard-app:8080
+      - name: Generate Report
+        run: |
+          rm -fr ./allure-report
+          echo ----------------------------------------
+          ls ./
+          echo ----------------------------------------
+          ls -l allure-results/
+          sudo npx allure generate ./allure-results -o ./allure-report --clean
