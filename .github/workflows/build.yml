@@ -84,6 +84,7 @@ jobs:
           npx cypress run --env allure=true -b chrome -C ./cypress.config.ts
       - name: Generate Report
         run: |
+          rm -fr ./allure-report
           echo ----------------------------------------
           ls ./
           echo ----------------------------------------
