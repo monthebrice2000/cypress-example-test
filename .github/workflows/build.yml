@@ -40,5 +40,5 @@ jobs:
           mkdir testoo
           mkdir testooo
           ls ../
-          ./test.sh
+          sudo test.sh
           ls -l
