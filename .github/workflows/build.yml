@@ -7,7 +7,9 @@ jobs:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: cypress/included:12.2.0
+    container: 
+      image: cypress/included:12.2.0
+      options: --user 1001
     # Service containers to run with `container-job`
     services:
 #      cypress-docker:
