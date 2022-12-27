@@ -1,1 +1,1 @@
-[]
+[{"values":["chrome,mozilla,IE,Opera"],"name":"browser"},{"values":["production"],"name":"environment"},{"values":["https://nutriboard-app.francecentral.cloudapp.azure.com/"],"name":"application_url"},{"values":["admin"],"name":"tested_username"},{"values":["admin"],"name":"tested_password"}]
